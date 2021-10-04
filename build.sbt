@@ -8,6 +8,8 @@ lazy val buildSettings = Seq(
   resolvers += Resolver.sonatypeRepo("public")
 )
 
+resolvers += "maven-central" at "http://central.maven.org/maven2/"
+
 lazy val swingDependencies = Def.setting {
   "org.scala-lang" % "scala-swing" % scalaVersion.value
 }
@@ -19,10 +21,12 @@ lazy val libDeps = Def.setting {
 
 lazy val root = (project in file(".")).
   settings(buildSettings: _*).
-  settings(name := "fabioClock")
+  settings(name := "fibonacciClock")
 
-lazy val library = (project in file("library")). // library
+lazy val library = (project in file("library")).
   settings(buildSettings: _*)
+
+
 
 lazy val swing = (project in file("swing")).
   settings(buildSettings: _*).
@@ -32,3 +36,17 @@ lazy val swing = (project in file("swing")).
     libraryDependencies += libDeps.value
   ).
   dependsOn(library)
+
+mainClass := Some("com.fibonacciClock.swing.Main")
+
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", xs@_*) =>
+    xs map {
+      _.toLowerCase
+    } match {
+      case "manifest.mf" :: Nil | "index.list" :: Nil | "dependencies" :: Nil => MergeStrategy.discard
+      case _ => MergeStrategy.discard
+    }
+  case "conf/application.conf" => MergeStrategy.concat
+  case _ => MergeStrategy.first
+}
