@@ -1,7 +1,16 @@
-package com.fabClock;object ColAndTypes {
+package com.fibonnacciClock
+
+import com.fibonnacciClock.swing.Main.{backColor, margin}
+
+import java.awt.{Color => AWTColor}
+
+
+import scala.swing.Rectangle
+
+object ColAndTypes {
 
         //-------- Rectangles
-                val r2 = new Rectangle(margin,margin,40,40 )
+        val r2 = new Rectangle(margin,margin,40,40 )
         val r1_1 =  new Rectangle(40 + margin,margin,20 ,20 )
         val r1_2 = new Rectangle(40 + margin,20 + margin,20 ,20 )
         val r3 =  new Rectangle(margin,40 + margin,60 ,60 )
@@ -9,7 +18,7 @@ package com.fabClock;object ColAndTypes {
         val rectangleList: Seq[Rectangle] = Seq(r5,r3,r2,r1_2,r1_1)
 
         //-------- Colors
-                val back: AWTColor = backColor
+        val back: AWTColor = backColor
         val white = new AWTColor(255, 255, 255)
         val black = new AWTColor(0,0,0)
         val blue = new AWTColor(0, 153, 255)

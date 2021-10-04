@@ -1,10 +1,10 @@
-package com.fabClock
+package com.fibonnacciClock
 
 import java.awt.Color
 import java.time.LocalDateTime
 
-import com.fabClock.ColAndTypes._
-import com.fabClock.swing.Main.backColor
+import com.fibonnacciClock.ColAndTypes._
+import com.fibonnacciClock.swing.Main.backColor
 
 object AbstractUI {
 
@@ -20,7 +20,6 @@ object AbstractUI {
 
   def f( x : Int, i : Int ): (Int, Int) =  if (x / i > 1) (1, x - i) else  (x/i, x % i)
 
-  // todo turn into reccursive function
   def getSeq(i : Int): Seq[Int] =
     Seq(f(i,5)._1,
         f( f(i ,5)._2, 3)._1,

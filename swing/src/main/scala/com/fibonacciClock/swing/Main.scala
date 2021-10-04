@@ -1,8 +1,7 @@
-package com.fabClock.swing
+package com.fibonacciClock.swing
 
 import java.awt.{Dimension, Font, Graphics2D, Color => AWTColor}
-
-import com.fabClock.{AbstractUI, ColAndTypes}
+import com.fibonacciClock.{AbstractUI, ColAndTypes}
 import javax.swing.{AbstractAction, Timer => SwingTimer}
 
 import scala.swing._
@@ -42,15 +41,12 @@ object Main extends SimpleSwingApplication {
       def drawTime(): Unit = {
         g.setFont(new Font("TimesRoman", Font.PLAIN, 10))
         g drawString(ui.timeString, 20, 20)
-        //      g drawString(ui.nextX, 20, 130)
       }
 
       def fillBlocks(): Unit = ui.blockSeq.indices foreach fillRectangle
-
-      fillBlocks()
-      drawBoarder()
-      //drawTime
-
+        fillBlocks()
+        drawBoarder()
+        // drawTime
     }
 
     def mainPanel: Panel = new Panel {
