@@ -1,4 +1,4 @@
-# fabClock
+# Fibonacci Clock
 
 Simple Swing Application that displays a Fibionacci Clock.
 
