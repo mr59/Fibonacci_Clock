@@ -15,6 +15,6 @@ The minutes are displayed in 5 minute increments (0 to 12) so you have to multip
 
 Example : 09:35 will be displayed as
 <div align="center">
-    <img src="/swing/src/main/scala/com/fibonacciClock/picture/sample.png" width="200px"</img> 
+    <img src="/swing/src/main/scala/com/fibonacciClock/picture/pic.png" width="200px"</img> 
 </div>
 
