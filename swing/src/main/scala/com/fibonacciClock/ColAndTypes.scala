@@ -1,6 +1,6 @@
-package com.fibonnacciClock
+package com.fibonacciClock
 
-import com.fibonnacciClock.swing.Main.{backColor, margin}
+import com.fibonacciClock.swing.Main.{backColor, margin}
 
 import java.awt.{Color => AWTColor}
 

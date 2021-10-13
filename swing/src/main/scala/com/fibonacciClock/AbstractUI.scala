@@ -1,10 +1,12 @@
-package com.fibonnacciClock
+package com.fibonacciClock
 
 import java.awt.Color
 import java.time.LocalDateTime
 
-import com.fibonnacciClock.ColAndTypes._
-import com.fibonnacciClock.swing.Main.backColor
+import com.fibonacciClock.ColAndTypes._
+import com.fibonacciClock.swing.Main.backColor
+
+import scala.collection.mutable.ListBuffer
 
 object AbstractUI {
 
@@ -14,22 +16,60 @@ object AbstractUI {
   def sec  : Int          = time.getSecond
 
   def twelveHourView(hour : Int) : Int  =  if(hour > 11) hour - 12 else hour
-  def ts(hour : Int, min : Int): String = (if(twelveHourView(hour) < 10)  "0"+ twelveHourView(hour)  else twelveHourView(hour) ) + ":" + (if(min < 10) "0" + min else min)
+
+  def ts(hour : Int, min : Int): String = (if(twelveHourView(hour) < 10)  "0"+ twelveHourView(hour)
+                                            else twelveHourView(hour) ) + ":" + (if(min < 10) "0" + min else min)
+
   def timeString : String               = ts(twelveHourView(hour),min ) +" : " + sec
-  // def nextX: String = new MouseMover().nextX
 
-  def f( x : Int, i : Int ): (Int, Int) =  if (x / i > 1) (1, x - i) else  (x/i, x % i)
+  def fibonacci(n : Int): Int = {
+    /**
+     * Work with recursive
+     * Returns n-1'th element (index starts with 0) of fibonacci sequence
+     */
+    n match {
+      case 0 => 0
+      case 1 => 1
+      case _ => fibonacci(n-2) + fibonacci(n-1)
+    }
+  }
 
-  def getSeq(i : Int): Seq[Int] =
-    Seq(f(i,5)._1,
-        f( f(i ,5)._2, 3)._1,
-        f( f( f(i,5)._2, 3)._2, 2)._1,
-        f( f( f( f(i,5)._2, 3)._2, 2)._2,1)._1,
-        f( f( f( f(i,5)._2, 3)._2, 2)._2,1)._2
-    )
+  val fibonacciSeq: Seq[Int] = (1 to 5) map fibonacci reverse
 
-  def hourSeq: Seq[Int] = getSeq(twelveHourView(hour))
-  def minSeq: Seq[Int] = getSeq(min/5)
+  /**
+   * Compute lighted square sequence : 1 for lighted else 0
+   * @param dividend value that will be split in lightedSequence
+   * @param xs fibonacci Sequence
+   * @return Seq[Int]
+   *         example : hour = 4
+   *         xs = [5,3,2,1,1]
+   *         lighted squares sequence should be
+   *         Seq [0,1,0,1,0] : 5*0 + 3*1 + 2*0 + 1*1 + 1*0 = 4
+   */
+  def computeLightedSequence(dividend : Int, xs : Seq[Int]): Seq[Int] = {
+
+    var accumulator : Int = dividend
+    var sequenceList = new ListBuffer[Int]()
+
+    val lightedSequence : Seq[Int] = {
+      xs foreach {
+        x => if (accumulator / x >= 1) {
+          sequenceList += 1
+          accumulator = accumulator - x
+        }
+        else {
+          sequenceList += 0
+          accumulator = accumulator
+        }
+      }
+      sequenceList
+    }
+
+    lightedSequence
+  }
+
+  def hourSeq: Seq[Int] = computeLightedSequence(twelveHourView(hour), fibonacciSeq)
+  def minSeq: Seq[Int] = computeLightedSequence(min/5, fibonacciSeq)
 
   def setColor(i : Int): Color = hourSeq(i) + minSeq(i) match {
     case 2 => both

@@ -1,4 +1,4 @@
-package com.fibonnacciClock
+package com.fibonacciClock
 
 import java.awt.Color
 
