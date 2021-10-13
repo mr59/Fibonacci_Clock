@@ -13,7 +13,7 @@ To read the hour, simply add up the corresponding values of the red and blue squ
 To read the minutes, do the same with the green and blue squares.
 The minutes are displayed in 5 minute increments (0 to 12) so you have to multiply your result by 5 to get the actual number. 
 
-Example : 08:50 will be displayed as
+Example : 09:35 will be displayed as
 <div align="center">
     <img src="/swing/src/main/scala/com/fibonacciClock/picture/sample.png" width="200px"</img> 
 </div>
