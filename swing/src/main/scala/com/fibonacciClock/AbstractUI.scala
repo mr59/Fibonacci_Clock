@@ -5,6 +5,10 @@ import java.time.LocalDateTime
 import com.fibonacciClock.ColAndTypes._
 import scala.collection.mutable.ListBuffer
 
+/**
+ *  Get current time and compute Block Sequences -> color to be filled for hour and min
+ */
+
 object AbstractUI {
 
   def time: LocalDateTime = LocalDateTime.now()
@@ -75,9 +79,8 @@ object AbstractUI {
   }
 
   def getBlock (i : Int): Block = Block( rectangleList(i), setColor(i) )
-  def blockSeq: Seq[Block] = rectangleList.indices map getBlock
 
-  val legendColor : Seq[Color] = Seq(hourColor, minColor, both)
-  def legendSeq = legendList.indices map {i => Block(legendList(i), legendColor(i))}
+  def blockSeq: Seq[Block] = rectangleList.indices map getBlock
+  def legendSeq : Seq[Block] = legendList.indices map {i => Block(legendList(i), legendColorSeq(i))}
 
 }
