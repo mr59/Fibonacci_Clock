@@ -2,10 +2,7 @@ package com.fibonacciClock
 
 import java.awt.Color
 import java.time.LocalDateTime
-
 import com.fibonacciClock.ColAndTypes._
-import com.fibonacciClock.swing.Main.backColor
-
 import scala.collection.mutable.ListBuffer
 
 object AbstractUI {
@@ -49,7 +46,7 @@ object AbstractUI {
   def computeLightedSequence(dividend : Int, xs : Seq[Int]): Seq[Int] = {
 
     var accumulator : Int = dividend
-    var sequenceList = new ListBuffer[Int]()
+    var sequenceList = new ListBuffer[Int]
 
     val lightedSequence : Seq[Int] = {
       xs foreach {
@@ -74,11 +71,13 @@ object AbstractUI {
   def setColor(i : Int): Color = hourSeq(i) + minSeq(i) match {
     case 2 => both
     case 1 => if (hourSeq(i) == 1) hourColor else minColor
-    case 0 => backColor
+    case 0 => com.fibonacciClock.ColAndTypes.backColor
   }
 
-  def getBlock (i : Int) = Block( rectangleList(i), setColor(i) )
-
+  def getBlock (i : Int): Block = Block( rectangleList(i), setColor(i) )
   def blockSeq: Seq[Block] = rectangleList.indices map getBlock
+
+  val legendColor : Seq[Color] = Seq(hourColor, minColor, both)
+  def legendSeq = legendList.indices map {i => Block(legendList(i), legendColor(i))}
 
 }

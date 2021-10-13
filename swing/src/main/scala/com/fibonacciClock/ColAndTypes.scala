@@ -1,10 +1,7 @@
 package com.fibonacciClock
 
-import com.fibonacciClock.swing.Main.{backColor, margin}
-
 import java.awt.{Color => AWTColor}
-
-
+import com.fibonacciClock.swing.Main.margin
 import scala.swing.Rectangle
 
 object ColAndTypes {
@@ -17,8 +14,13 @@ object ColAndTypes {
         val r5 =  new Rectangle(60 + margin,margin,100 ,100 )
         val rectangleList: Seq[Rectangle] = Seq(r5,r3,r2,r1_2,r1_1)
 
+        val hourLegend = new Rectangle(margin, 120, 10, 10)
+        val minLegend = new Rectangle(margin + 50, 120, 10, 10)
+        val bothLegend = new Rectangle(margin + 100, 120, 10, 10)
+        val legendList: Seq[Rectangle] = Seq(hourLegend, minLegend, bothLegend)
+
         //-------- Colors
-        val back: AWTColor = backColor
+        val backColor: AWTColor = new AWTColor(255, 255, 255)
         val white = new AWTColor(255, 255, 255)
         val black = new AWTColor(0,0,0)
         val blue = new AWTColor(0, 153, 255)
